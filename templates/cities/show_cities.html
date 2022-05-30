@@ -3,12 +3,8 @@
 
 {% for city in all_cities %}
     <div class="city">
-        <ul>
-            <li>
-                <h3>{{city.name}}</h3>
-                <h3>{{city.country}}</h3>
-            </li>
-        </ul>
+                <h4>{{city.name}}</h4>
+                <h5>{{city.country.name}}</h5>
     </div>
 
 {% endfor %}
