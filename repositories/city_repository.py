@@ -5,7 +5,7 @@ from models.country import Country
 import repositories.country_repository as country_repository
 
 def save(city):
-    sql = "INSERT INTO cities (name, country) VALUES (?, ?) RETURNING *"
+    sql = "INSERT INTO cities (name, country_id) VALUES (?, ?) RETURNING *"
     values = [city.name]
     results = run_sql(sql, values)
     id = results[0]['id']
@@ -19,7 +19,7 @@ def select_all():
     results = run_sql(sql)
 
     for row in results:
-        city = City(row['name'], row['country'],row['id'] )
+        city = City(row['name'], row['country_id'],row['id'] )
         cities.append(city)
     return cities
 
