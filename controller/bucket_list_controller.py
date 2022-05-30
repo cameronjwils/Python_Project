@@ -7,7 +7,7 @@ import repositories.country_repository as country_repository
 
 bucket_list_blueprint = Blueprint("bucket_list", __name__)
 
-@bucket_list_blueprint.route("/bucket_list")
+@bucket_list_blueprint.route("/bucket-list")
 def bucket_list():
     cities = city_repository.select_all()
-    return render_template("cities/show_cities.hmtl", all_cities = cities)
+    return render_template("cities/show_cities.html", all_cities=cities)
