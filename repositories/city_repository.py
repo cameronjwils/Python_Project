@@ -31,3 +31,9 @@ def delete(id):
     sql = "DELETE  FROM cities WHERE id = ?"
     values = [id]
     run_sql(sql, values)
+
+def update(city):
+    sql = "UPDATE books SET (name, country_id) = (?, ?) WHERE id = ?"
+    values = [city.name, city.country.id, city.id]
+    print(values)
+    run_sql(sql, values)
