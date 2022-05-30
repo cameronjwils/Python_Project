@@ -5,8 +5,8 @@ from models.country import Country
 import repositories.country_repository as country_repository
 
 def save(city):
-    sql = "INSERT INTO cities (name, country_id) VALUES (?, ?) RETURNING *"
-    values = [city.name, city.country.id]
+    sql = "INSERT INTO cities (name, country_id, visited) VALUES (?, ?, ?) RETURNING *"
+    values = [city.name, city.country.id, city.visited]
     results = run_sql(sql, values)
     id = results[0]['id']
     city.id = id
@@ -20,7 +20,7 @@ def select_all():
 
     for row in results:
         country = country_repository.select(row['country_id'])
-        city = City(row['name'], country, row['id'] )
+        city = City(row['name'], country, row['visited'], row['id'] )
         cities.append(city)
     return cities
 
@@ -35,6 +35,6 @@ def delete(id):
 
 def update(city):
     sql = "UPDATE cities SET (name, country_id) = (?, ?) WHERE id = ?"
-    values = [city.name, city.country.id, city.id]
+    values = [city.name, city.country.id, city.visited, city.id]
     print(values)
     run_sql(sql, values)
