@@ -8,13 +8,17 @@
     </div>
     <div>
         <label for="Country">Country:</label>
-        <input type="text" id="country" name="country" placeholder="Country" required autofocus>
+        <select name="country_id" id="country"></select>
+
+        {% for country in all_counrties %}
+        <option value="{{country.id}}">{{city.country}}</option>
+        {% endfor %}
     </div>
     <div>
         <label for="Visited">Visited</label>
         <select id="visited" name="visited">
-            <option value="1">True</option>
             <option value="0">False</option>
+            <option value="1">True</option>
         </select>
     </div>
     <button type="submit">Add City</button>

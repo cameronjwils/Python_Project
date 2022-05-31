@@ -11,7 +11,7 @@ CREATE TABLE countries (
 CREATE TABLE cities (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
   name VARCHAR,
-  visited BOOLEAN
+  visited BOOLEAN,
   country_id INTEGER NOT NULL,
       FOREIGN KEY (country_id)
          REFERENCES countries (id)

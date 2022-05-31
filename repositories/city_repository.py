@@ -20,7 +20,7 @@ def select_all():
 
     for row in results:
         country = country_repository.select(row['country_id'])
-        city = City(row['name'], country, row['visited'], row['id'] )
+        city = City(row['name'], country, row['visited'], row['id'])
         cities.append(city)
     return cities
 
@@ -34,7 +34,7 @@ def delete(id):
     run_sql(sql, values)
 
 def update(city):
-    sql = "UPDATE cities SET (name, country_id) = (?, ?) WHERE id = ?"
+    sql = "UPDATE cities SET (name, country_id, visited) = (?, ?, ?) WHERE id = ?"
     values = [city.name, city.country.id, city.visited, city.id]
     print(values)
     run_sql(sql, values)
