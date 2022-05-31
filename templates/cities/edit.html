@@ -10,9 +10,9 @@
         <label for="country">Country:</label>
         <select name="country_id" id="country">
             {% for country in all_countries %}
-            <option value="{{ country.id }}">
+            <option value="{{ country.id }}"
                 {% if city.country.id == country.id %} selected="selected"{% endif %}>
-                {{country.name()}}
+                {{country.name}}
             </option>
             {% endfor %}
         </select>
@@ -22,12 +22,12 @@
         <select id="visited" name="visited">
     
           <option value="1"
-            {% if task.visited == True %} selected="selected" {% endif %}>
+            {% if city.visited == True %} selected="selected" {% endif %}>
             True
           </option>
     
           <option value="0"
-            {% if task.visited == False %} selected="selected" {% endif %}>
+            {% if city.visited == False %} selected="selected" {% endif %}>
             False
           </option>
         </select>

@@ -38,7 +38,7 @@ def update_city(id):
     name = request.form['name']
     country = country_repository.select(request.form['country_id'])
     visited = bool(int(request.form['visited']))
-    city = city(name, visited, country, id)
+    city = City(name, visited, country, id)
     city_repository.update(city)
     return redirect('/city')
 
