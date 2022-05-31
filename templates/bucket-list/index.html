@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block content %}
+{% for city in all_cities %}
+    <div
+    class="bucket-list">
+    <p>
+        <li>
+            {{city.name}},
+            {{city.country.name}}
+        </li>
+    </p>
+    <div>
+            Visited: {% if city.visited == True %}
+            <i class="fa fa-check fa-2x" style="color:green" aria-hidden="true"></i>
+          {% endif %}
+        </div>
+    </div>
+{% endfor %}
+{% endblock %}

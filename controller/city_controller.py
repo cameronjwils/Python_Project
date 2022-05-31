@@ -5,19 +5,19 @@ from models.country import Country
 import repositories.city_repository as city_repository
 import repositories.country_repository as country_repository
 
-bucket_list_blueprint = Blueprint("bucket_list", __name__)
+city_blueprint = Blueprint("city", __name__)
 
-@bucket_list_blueprint.route("/bucket-list")
-def bucket_list():
+@city_blueprint.route("/bucket-list")
+def city():
     cities = city_repository.select_all()
     return render_template("bucket-list/index.html", all_cities=cities)
 
-@bucket_list_blueprint.route("/city/add", methods=['GET'])
+@city_blueprint.route("/city/add", methods=['GET'])
 def add_city():
     countries = country_repository.select_all()
-    return render_template("cities/add.html", all_countries = countries)
+    return render_template("cities/new.html", all_countries = countries)
 
-@bucket_list_blueprint.route("/city", methods=['POST'])
+@city_blueprint.route("/city", methods=['POST'])
 def create_city():
     name = request.form['name']
     country = country_repository.select(request.form['country_id'])
