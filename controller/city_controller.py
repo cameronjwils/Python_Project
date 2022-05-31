@@ -1,4 +1,4 @@
-from unicodedata import name
+# from unicodedata import name
 from flask import Flask, render_template, request, redirect
 from flask import Blueprint
 from models.city import City
@@ -8,7 +8,7 @@ import repositories.country_repository as country_repository
 
 city_blueprint = Blueprint("city", __name__)
 
-@city_blueprint.route("/bucket-list")
+@city_blueprint.route("/cities")
 def city():
     cities = city_repository.select_all()
     return render_template("bucket-list/index.html", all_cities=cities)
@@ -25,7 +25,7 @@ def create_city():
     visited = bool(int(request.form['visited']))
     city = City(name, country, visited)
     city_repository.save(city)
-    return redirect('/bucket-list')
+    return redirect('/cities')
 
 @city_blueprint.route("/city/<id>/edit", methods=['GET'])
 def edit_city(id):
@@ -38,11 +38,11 @@ def update_city(id):
     name = request.form['name']
     country = country_repository.select(request.form['country_id'])
     visited = bool(int(request.form['visited']))
-    city = City(name, visited, country, id)
+    city = City(name, country,visited, id)
     city_repository.update(city)
-    return redirect('/city')
+    return redirect('/cities')
 
-@city_blueprint.route("/city/<id>/delete", methods=['POST'])
+@city_blueprint.route("/cities/<id>/delete", methods=['POST'])
 def delete_city(id):
     city_repository.delete(id)
-    return redirect('/city')
+    return redirect('/cities')
