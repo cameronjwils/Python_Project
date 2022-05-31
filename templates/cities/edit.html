@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block content %}
+
+<form action="/cities/{{city.id}}" method="post">
+    <div>
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" value="{{city.name}}" required>
+    </div>
+    <div>
+        <label for="country">Country:</label>
+        <select name="country_id" id="country">
+            {% for country in all_countries %}
+            <option value="{{ country.id }}">
+                {% if city.country.id == country.id %} selected="selected"{% endif %}>
+                {{country.name()}}
+            </option>
+            {% endfor %}
+        </select>
+    </div>
+    <div>
+        <label for="visited">Visited:</label>
+        <select id="visited" name="visited">
+    
+          <option value="1"
+            {% if task.visited == True %} selected="selected" {% endif %}>
+            True
+          </option>
+    
+          <option value="0"
+            {% if task.visited == False %} selected="selected" {% endif %}>
+            False
+          </option>
+        </select>
+      </div>
+
+      <button type="submit">Update City</button>
+</form>
+
+{% endblock %}

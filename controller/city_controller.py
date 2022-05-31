@@ -1,3 +1,4 @@
+from unicodedata import name
 from flask import Flask, render_template, request, redirect
 from flask import Blueprint
 from models.city import City
@@ -26,3 +27,22 @@ def create_city():
     city_repository.save(city)
     return redirect('/bucket-list')
 
+@city_blueprint.route("/city/<id>/edit", methods=['GET'])
+def edit_city(id):
+    city = city_repository.select(id)
+    countries = country_repository.select_all()
+    return render_template('cities/edit.html', city = city, all_countries = countries)
+
+@city_blueprint.route("/city/<id>", methods=['POST'])
+def update_city(id):
+    name = request.form['name']
+    country = country_repository.select(request.form['country_id'])
+    visited = bool(int(request.form['visited']))
+    city = city(name, visited, country, id)
+    city_repository.update(city)
+    return redirect('/city')
+
+@city_blueprint.route("/city/<id>/delete", methods=['POST'])
+def delete_city(id):
+    city_repository.delete(id)
+    return redirect('/city')
