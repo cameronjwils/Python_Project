@@ -10,9 +10,11 @@
         </li>
     </p>
     <div>
-            Visited: {% if city.visited == True %}
-            True
-            <i class="fa fa-check"  aria-hidden="true"></i>
+            Visited:
+            {% if city.visited == True %}
+            <i class="fa fa-check fa-2x" style="color:green" aria-hidden="true"></i>
+            {% else %}
+            <i class="fa fa-times fa-2x" aria-hidden="true"></i>
             {% endif %}
         </div>
     </div>
