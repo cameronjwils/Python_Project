@@ -14,5 +14,5 @@ CREATE TABLE cities (
   visited BOOLEAN,
   country_id INTEGER NOT NULL,
       FOREIGN KEY (country_id)
-         REFERENCES countries (id)
+         REFERENCES countries (id) ON DELETE CASCADE
 );
